@@ -19,11 +19,11 @@ where:
 ## Usage
 
 ```bash
-./download.sh [-c|--clear] ([-v|--ubuntu-version] version) ([-a|--arch] arch) [-h|--help] <packages-1> ... [<packages-n>] ...
+./download.sh [-c|--clear] ([-v|--ubuntu-version] version) ([-a|--arch] arch) [-h|--help] package-1 ... [package-n] ...
 ```
 
 where:
-* <packages>: list of packages to download
+* package: one or a list of packages to download
 * -c, --clear: clean the archives before starting download (optional, off by default)
 * -a, --arch: select which architecture you need packages of (optional, both i386 and amd64 by default)
 * -v, --ubuntu-version: which version of Ubuntu must be loaded (optional, 16.04 by default)
