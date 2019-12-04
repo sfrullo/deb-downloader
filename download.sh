@@ -76,10 +76,11 @@ cmd="run-parts --verbose /root/setup.d; ${clean} apt update; apt install --no-in
 
 for arch in ${_arg_arch[@]}; do
 	sudo docker run -it --rm \
-	-v ${PWD}/setup.d/:/root/setup.d/ \
-	-v ${PWD}/apt.conf.d/:/etc/apt/apt.conf.d/ \
-	-v ${PWD}/${arch}-deb/:/var/cache/apt/archives \
-	-v ${PWD}/${arch}-sources.list.d/:/etc/apt/sources.list.d/ \
+	-v ${PWD}/setup.d:/root/setup.d \
+	-v ${PWD}/apt.conf.d:/etc/apt/apt.conf.d \
+	-v ${PWD}/trusted.gpg.d:/etc/apt/trusted.gpg.d \
+	-v ${PWD}/${arch}-deb:/var/cache/apt/archives \
+	-v ${PWD}/${arch}-sources.list.d:/etc/apt/sources.list.d \
 	${arch}/ubuntu:${_arg_ubuntu_version} /bin/bash -c "${cmd}"
 done
 
