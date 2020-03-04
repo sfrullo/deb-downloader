@@ -75,6 +75,7 @@ fi
 cmd="run-parts --verbose /root/setup.d; ${clean} apt update; apt install --no-install-recommends --reinstall -d -y ${_arg_packages[@]}"
 
 for arch in ${_arg_arch[@]}; do
+
 	sudo docker run -it --rm \
 	-v ${PWD}/setup.d:/root/setup.d \
 	-v ${PWD}/apt.conf.d:/etc/apt/apt.conf.d \
@@ -82,6 +83,7 @@ for arch in ${_arg_arch[@]}; do
 	-v ${PWD}/${arch}-deb:/var/cache/apt/archives \
 	-v ${PWD}/${arch}-sources.list.d:/etc/apt/sources.list.d \
 	${arch}/ubuntu:${_arg_ubuntu_version} /bin/bash -c "${cmd}"
-done
 
-sudo rm -r *-deb/lock *-deb/partial
+	sudo rm -r ${arch}-deb/lock ${arch}-deb/partial
+
+done
